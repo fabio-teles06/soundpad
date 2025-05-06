@@ -1,26 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <title>Soundpad</title>
-    <style>
-        button {
-            width: 120px;
-            height: 60px;
-            margin: 10px;
-            font-size: 18px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Soundpad</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #1f1f1f;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    #menuToggle {
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    #sideMenu {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background-color: #2c2c2c;
+      padding: 20px;
+      transition: left 0.3s ease;
+      box-shadow: 3px 0 10px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+    }
+
+    #sideMenu.open {
+      left: 0;
+    }
+
+    #sideMenu h2 {
+      margin-top: 0;
+    }
+
+    select,
+    #sideMenu button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #sideMenu button {
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    #sideMenu button:hover {
+      background-color: #45a049;
+    }
+
+    #sound-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 15px;
+    }
+
+    #sound-buttons button {
+      width: 150px;
+      height: 60px;
+      font-size: 16px;
+      background-color: #3a3a3a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    #sound-buttons button:hover {
+      background-color: #505050;
+    }
+  </style>
 </head>
 
 <body>
-    <h1>Soundpad</h1>
+  <header>
+    <h1>🎵 Soundpad</h1>
+    <button id="menuToggle">☰</button>
+  </header>
 
+  <div id="sideMenu">
+    <h2>Configurações</h2>
+    <label for="outputDevices">Dispositivo de saída:</label>
+    <select id="outputDevices"></select>
     <button onclick="addAudio()">+ Adicionar Áudio</button>
+  </div>
+
+  <main>
     <div id="sound-buttons"></div>
+  </main>
 
+  <script>
+    const menu = document.getElementById('sideMenu');
+    const toggle = document.getElementById('menuToggle');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+  </script>
+  <script src="renderer.js"></script>
 </body>
-<script src="renderer.js"></script>
-
 </html>
